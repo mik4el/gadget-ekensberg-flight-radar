@@ -11,7 +11,7 @@ import json
 class DataAuther:
 
 	def __init__(self, username, password, base_url):
-		self.login_url = base_url + '/api-token-auth/'
+		self.login_url = base_url + '/backend/api-token-auth/'
 		self.username = username
 		self.password = password
 		self.token = None
@@ -28,7 +28,7 @@ class DataPosterWorker(threading.Thread):
 	def __init__(self, token, base_url, data_string, status_queue):
 		threading.Thread.__init__(self)
 		gadget_slug = "ekensberg-flight-radar" 
-		self.post_url = base_url+'/api/v1/gadgets/'+gadget_slug+'/data/'
+		self.post_url = base_url+'/backend/api/v1/gadgets/'+gadget_slug+'/data/'
 		self.headers = {'Authorization': 'Bearer '+ token}
 		self.data_string = data_string
 		self.status_queue = status_queue
