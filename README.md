@@ -4,6 +4,7 @@ Tracking nearby flights around Ekensberg using SDR to collect ADS-B data and sen
 ## Depends on 
 1. rtl-sdr
 1. dump1090
+1. python3
 
 ## Suggested hardware
 Hardware needed is a SDR stick (e.g. RTL2832U from http://www.rtl-sdr.com/), an antenna (an antenna made for 1090 MHz is significantly better, i.e. you will receive more data, than just the standard tv antenna that ships with most sdr dongles) and a computer, tested with OS X and a raspberry pi 1 mod b.
@@ -52,7 +53,7 @@ blacklist rtl2830
 1. Reboot 
 1. Connect your sdr dongle and test it with `rtl_test -t`
 1. Install 1090 by following the same steps above.
-1. Start 1090 with `./dump1090 --interactive --net`
+1. Start 1090 in its folder with `./dump1090 --interactive --net`
 
 ## Setup data poster
 1. `git clone <this repo>`
