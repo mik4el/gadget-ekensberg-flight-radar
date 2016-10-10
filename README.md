@@ -53,13 +53,10 @@ blacklist rtl2830
 1. Reboot 
 1. Connect your sdr dongle and test it with `rtl_test -t`
 1. Install 1090 by following the same steps above.
-1. Start 1090 in its folder with `./dump1090 --interactive --net`
 
 ## Setup data poster
 1. `git clone <this repo>`
-1. `export GADGET_DATA_POSTER_USERNAME=<your username>`
-1. `export GADGET_DATA_POSTER_PASSWORD=<your password>`
-1. `export GADGET_DATA_POSTER_URL=<your host>`
+1. Make a copy of .env.sample as .env and fill in exports
 1. `python post_serial_data.py`
 
 # Todos
