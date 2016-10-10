@@ -1,4 +1,5 @@
 import os
+import subprocess
 import serial
 from time import strftime
 import requests
@@ -71,6 +72,10 @@ if __name__ == '__main__':
 	username = os.environ.get('GADGET_DATA_POSTER_USERNAME', None)
 	password = os.environ.get('GADGET_DATA_POSTER_PASSWORD', None)
 	base_url = os.environ.get('GADGET_DATA_POSTER_URL', '')
+	dump1090_cmd = os.environ.get('DUMP1090_COMMAND', '')
+	
+	# start dump1090 in background
+	subprocess.Popen(dump1090_cmd, shell=True)
 
 	status_queue = queue.Queue()
 	data_auther = DataAuther(username, password, base_url)
