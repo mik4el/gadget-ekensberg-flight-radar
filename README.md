@@ -56,7 +56,7 @@ blacklist rtl2830
 
 ## Setup data poster
 1. `git clone <this repo>`
-1. Make a copy of .env.sample as .env and fill in exports
+1. Make a copy of `.env.sample` as `.env` and fill in exports
 1. `python post_serial_data.py`
 
 # Todos
