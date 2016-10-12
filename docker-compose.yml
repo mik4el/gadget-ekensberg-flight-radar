@@ -1,0 +1,15 @@
+dump1090:
+  restart: always
+  build: ./DUMP1090
+  expose:
+    - 8080
+  links:
+    - poster:poster
+
+poster:
+  restart: always
+  build: .
+  env_file: .env
+  volumes:
+    - .
+  command: python post_serial_data.py
