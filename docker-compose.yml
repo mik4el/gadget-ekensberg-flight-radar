@@ -2,14 +2,15 @@ dump1090:
   restart: always
   build: ./DUMP1090
   expose:
-    - 8080
-  links:
-    - poster:poster
+    - "8080"
+  privileged: true
+  command: --interactive --net
 
 poster:
   restart: always
-  build: .
+  build: ./poster
   env_file: .env
-  volumes:
-    - .
-  command: python post_serial_data.py
+  command: python post_data.py
+  links:
+  - dump1090:dump1090
+

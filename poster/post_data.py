@@ -1,6 +1,4 @@
 import os
-import serial
-from time import strftime
 import requests
 from datetime import datetime, timedelta
 import threading
@@ -96,7 +94,7 @@ if __name__ == '__main__':
 			# Get data
 			if (time.time()-time_since_get>60.0):
 				time_since_get = time.time()
-				get_url = "http://localhost:8080/data.json"
+				get_url = "http://dump1090:8080/data.json"
 				r = requests.get(get_url)
 				data = r.text
 				
