@@ -1,14 +1,14 @@
 FROM resin/rpi-raspbian:jessie
 
 MAINTAINER mik4el
- 
+
 RUN apt-get update && \
     apt-get install -y libusb-1.0-0-dev pkg-config ca-certificates git-core cmake build-essential --no-install-recommends && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
- 
+
 WORKDIR /tmp
- 
+
 RUN echo 'blacklist dvb_usb_rtl28xxu' > /etc/modprobe.d/raspi-blacklist.conf && \
     git clone git://git.osmocom.org/rtl-sdr.git && \
     mkdir rtl-sdr/build && \
@@ -18,6 +18,11 @@ RUN echo 'blacklist dvb_usb_rtl28xxu' > /etc/modprobe.d/raspi-blacklist.conf && 
     make install && \
     ldconfig && \
     rm -rf /tmp/rtl-sdr
- 
-WORKDIR /
 
+RUN git clone git://github.com/antirez/dump1090.git && \
+ cd dump1090 && \
+ make
+ 
+WORKDIR /tmp/dump1090
+ 
+ENTRYPOINT ["./dump1090"]

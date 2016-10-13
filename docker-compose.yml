@@ -1,6 +1,6 @@
 dump1090:
   restart: always
-  build: ./DUMP1090
+  build: ./dump1090
   expose:
     - "8080"
   privileged: true

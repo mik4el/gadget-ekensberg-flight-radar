@@ -12,7 +12,7 @@ Hardware needed is a SDR stick (e.g. RTL2832U from http://www.rtl-sdr.com/), an 
 
 # Get started
 
-## Setup osx environment
+## Setup osx test environment
 Install rtl-sdr using macports (http://www.macports.org/):
 
 `sudo port install rtl-sdr`
@@ -29,7 +29,7 @@ Install dump1090 (https://github.com/antirez/dump1090):
 1. `./dump1090 --interactive --net --aggressive`
 1. Go to `http://localhost:8080` and find the data at `http://localhost:8080/data.json`
 
-## Setup raspi environment
+## Setup raspi test environment
 Install rtl-sdr on your raspi:
 
 1. `sudo apt-get install -y cmake pkg-config libusb-1.0`
@@ -58,9 +58,43 @@ blacklist rtl2830
 ## Setup data poster
 1. `git clone <this repo>`
 1. Make a copy of `.env.sample` as `.env` and fill in exports
-1. `python post_serial_data.py`
+1. `source .env`
+1. `python -m poster.post_data.py`
+
+## Setup raspi for Docker
+Use a raspi 3 for more punch and built in wifi, probably works with earlier raspis to.
+
+1. Get jessie lite from https://www.raspberrypi.org/downloads/raspbian/ and write to sd-card.
+1. Follow e.g this guide http://blog.alexellis.io/getting-started-with-docker-on-raspberry-pi/
+1. Install `docker-compose` following https://github.com/hypriot/arm-compose
+1. Add wifi access using e.g. https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+1. Add your local ssh key:
+    ```
+    mkdir .ssh
+    touch .ssh/authorized_keys
+    sudo nano ~/.ssh/authorized_keys
+    ```
+1. Fix for local ssh config, so you can `ssh pi-name`:
+    ```
+    Host pi-name
+     HostName pi-name.local
+     User pi
+     PreferredAuthentications publickey
+    ```
+1. Install byobu for easier terminal over ssh `sudo apt-get install byobu`.
+1. Make sure no other drivers are used:
+    ```
+    sudo vi /etc/modprobe.d/raspi-blacklist.conf
+    ```
+1. Add these lines:
+    ```
+    blacklist dvb_usb_rtl28xxu
+    blacklist rtl2832
+    blacklist rtl2830
+    ```
+1. Get this repo `git clone <repo url>`
+1. Make a copy `.env` of `.env.sample` and fill in. 
+1. `docker-compose up`
 
 # Todos
-1. Document docker container setup, deploy and use
-1. Error message on assertion error empty data.json
 1. Describe example antenna
