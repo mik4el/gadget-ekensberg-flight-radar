@@ -1,6 +1,6 @@
 import os
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime
 import threading
 import queue
 import time
@@ -37,10 +37,9 @@ class DataPosterWorker(threading.Thread):
         self.status_queue.put(message)
 
     def post_data(self, data):
-        now = datetime.now() - timedelta(hours=2)  # convert to Z timezone
         payload = {
             'data': data,
-            'timestamp': now.isoformat()
+            'timestamp': datetime.now().isoformat()
         }
         try:
             r = requests.post(self.post_url, json=payload, headers=self.headers)
@@ -65,6 +64,7 @@ class DataPosterWorker(threading.Thread):
 
 
 if __name__ == '__main__':
+    print("Started...")
     username = os.environ.get('GADGET_DATA_POSTER_USERNAME', None)
     password = os.environ.get('GADGET_DATA_POSTER_PASSWORD', None)
     base_url = os.environ.get('GADGET_DATA_POSTER_URL', '')
@@ -105,4 +105,4 @@ if __name__ == '__main__':
                     print(log_message, file=logfile)
                 print(log_message)
     except KeyboardInterrupt:
-        print("\ndone")
+        print("Done")
