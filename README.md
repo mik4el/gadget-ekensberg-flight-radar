@@ -8,7 +8,7 @@ Tracking nearby flights around Ekensberg using SDR to collect ADS-B data and sen
 1. Docker, Docker-compose
 
 ## Suggested hardware
-Hardware needed is a SDR stick (e.g. RTL2832U from http://www.rtl-sdr.com/), an antenna (an antenna made for 1090 MHz is significantly better, i.e. you will receive more data, than just the standard tv antenna that ships with most sdr dongles) and a computer, tested with OS X and a raspberry pi 1 mod b.
+Hardware needed is a SDR stick (e.g. RTL2832U from http://www.rtl-sdr.com/), an antenna (an antenna made for 1090 MHz is significantly better, i.e. you will receive more data, than just the standard tv antenna that ships with most sdr dongles) and a computer, tested with OS X, a raspberry pi 1 mod b and a raspberry pi 3.
 
 # Get started
 
