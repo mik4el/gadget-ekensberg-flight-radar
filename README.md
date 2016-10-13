@@ -60,6 +60,6 @@ blacklist rtl2830
 1. `python post_serial_data.py`
 
 # Todos
-1. Docker container
+1. Document docker container setup, deploy and use
 1. Error message on assertion error empty data.json
 1. Describe example antenna
