@@ -69,29 +69,37 @@ Use a raspi 3 for more punch and built in wifi, probably works with earlier rasp
 1. Install `docker-compose` following https://github.com/hypriot/arm-compose
 1. Add wifi access using e.g. https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 1. Add your local ssh key:
-    ```
-    mkdir .ssh
-    touch .ssh/authorized_keys
-    sudo nano ~/.ssh/authorized_keys
-    ```
+  
+  ```
+  mkdir .ssh
+  touch .ssh/authorized_keys
+  sudo nano ~/.ssh/authorized_keys
+  ```
+
 1. Fix for local ssh config, so you can `ssh pi-name`:
-    ```
-    Host pi-name
-     HostName pi-name.local
-     User pi
-     PreferredAuthentications publickey
-    ```
+
+  ```
+  Host pi-name
+   HostName pi-name.local
+   User pi
+   PreferredAuthentications publickey
+  ```
+    
 1. Install byobu for easier terminal over ssh `sudo apt-get install byobu`.
 1. Make sure no other drivers are used:
-    ```
-    sudo vi /etc/modprobe.d/raspi-blacklist.conf
-    ```
+  
+  ```
+  sudo vi /etc/modprobe.d/raspi-blacklist.conf
+  ```
+  
 1. Add these lines:
-    ```
-    blacklist dvb_usb_rtl28xxu
-    blacklist rtl2832
-    blacklist rtl2830
-    ```
+  
+  ```
+  blacklist dvb_usb_rtl28xxu
+  blacklist rtl2832
+  blacklist rtl2830
+  ```
+  
 1. Get this repo `git clone <repo url>`
 1. Make a copy `.env` of `.env.sample` and fill in. 
 1. `docker-compose up`
