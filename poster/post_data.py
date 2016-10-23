@@ -91,7 +91,7 @@ if __name__ == '__main__':
                             status_queue.queue.clear()
 
             # Get data
-            if time.time() - time_since_get > 60.0:
+            if time.time() - time_since_get > 1.0:
                 time_since_get = time.time()
                 r = requests.get(dump1090_url)
                 data = r.text
