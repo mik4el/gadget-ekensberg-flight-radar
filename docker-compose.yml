@@ -11,6 +11,7 @@ poster:
   build: ./poster
   env_file: .env
   command: python post_data.py
+  volumes:
+    - ./poster:/usr/src/app/
   links:
   - dump1090:dump1090
-
