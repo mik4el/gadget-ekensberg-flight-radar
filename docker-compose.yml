@@ -1,17 +1,30 @@
-dump1090:
-  restart: always
-  build: ./dump1090
-  expose:
-    - "8080"
-  privileged: true
-  command: --net --interactive
+version: '2'
 
-poster:
-  restart: always
-  build: ./poster
-  env_file: .env
-  command: python post_data.py
-  volumes:
-    - ./poster:/usr/src/app/
-  links:
-  - dump1090:dump1090
+services:
+  dump1090:
+    restart: always
+    build: ./dump1090
+    expose:
+      - "8080"
+    privileged: true
+    command: --net --interactive
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1M"
+        max-file: "1"
+
+  poster:
+    restart: always
+    build: ./poster
+    env_file: .env
+    command: python post_data.py
+    volumes:
+      - ./poster:/usr/src/app/
+    links:
+      - dump1090:dump1090
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1M"
+        max-file: "1"
