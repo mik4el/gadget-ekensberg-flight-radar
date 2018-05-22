@@ -9,10 +9,7 @@ services:
     privileged: true
     command: --net --interactive
     logging:
-      driver: "json-file"
-      options:
-        max-size: "1M"
-        max-file: "1"
+      driver: "none"
 
   poster:
     restart: always
@@ -24,7 +21,4 @@ services:
     links:
       - dump1090:dump1090
     logging:
-      driver: "json-file"
-      options:
-        max-size: "1M"
-        max-file: "1"
+      driver: "none"
